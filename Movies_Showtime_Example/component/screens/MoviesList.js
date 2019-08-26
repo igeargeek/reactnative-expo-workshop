@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TouchableHighlight, FlatList, Image } from 'react-native'
 import { NavigationActions } from 'react-navigation';
 
 export default class MoviesList extends Component {
@@ -9,12 +9,31 @@ export default class MoviesList extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TouchableOpacity
-                    onPress={() => 
-                        this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'MovieDetail' }))}
-                    >
-                    <Text style={styles.text}> MoviesList </Text>
-                </TouchableOpacity>
+                <FlatList
+                    data={[{key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}, {key: 'd'}, {key: 'd'}]}
+                    numColumns={2}
+                    renderItem={({item}) => 
+                    <TouchableHighlight
+                        style={styles.cardMovie}
+                        activeOpacity={1}
+                        onPress={() => 
+                            this.props.navigation.dispatch(NavigationActions.navigate({ 
+                                routeName: 'MovieDetail',
+                                params: { id: item.key },
+                            }))
+                        }>
+                        <View style={styles.movieImage}>
+                            <Image source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
+                                style={styles.movieImage} />
+                            <View style={{padding: 20}}>
+                                <Text style={styles.textDate}>22 สิงหาคม 2019</Text>
+                                <Text style={styles.textTitle}>ชื่อหนังแบบตัวอย่าง</Text>
+                            </View>
+                        </View>
+                    </TouchableHighlight>
+                    }
+                />
+                
             </View>
         )
     }
@@ -22,12 +41,23 @@ export default class MoviesList extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'center',
         flex: 1,
-        backgroundColor: '#000'
+        backgroundColor: '#000',
+        paddingTop: 50
     },
-    text: {
-        color: '#fff'
+    textDate: {
+        color: '#e1b12c'
+    },
+    textTitle: {
+        color: '#fff',
+        fontSize: 17,
+        marginTop: 5
+    },
+    cardMovie: {
+        flex: 1, 
+        height: 350
+    },
+    movieImage: {
+        flex: 1
     }
 })
