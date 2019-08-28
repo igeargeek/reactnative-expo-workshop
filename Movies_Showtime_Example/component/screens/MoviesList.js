@@ -8,6 +8,7 @@ export default class MoviesList extends Component {
         title: 'Movies Showtime Example',
         headerStyle: {
             backgroundColor: '#000',
+            borderBottomWidth: 0
         },
         headerTintColor: '#fff'
     };
@@ -47,10 +48,10 @@ export default class MoviesList extends Component {
                         style={styles.cardMovie}
                         activeOpacity={1}
                         onPress={() => 
-                            this.props.navigation.dispatch(NavigationActions.navigate({ 
+                            this.props.navigation.navigate({ 
                                 routeName: 'MovieDetail',
                                 params: { id: item.id },
-                            }))
+                            })
                         }>
                         <View style={styles.cardMovie}>
                             <Image source={{uri: item.image}}

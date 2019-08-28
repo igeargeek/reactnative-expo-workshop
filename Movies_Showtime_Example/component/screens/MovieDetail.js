@@ -6,8 +6,9 @@ export default class MovieDetail extends Component {
     static navigationOptions = {
         headerStyle: {
             backgroundColor: '#000',
+            borderBottomWidth: 0
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#fff'
     };
 
     state = {
