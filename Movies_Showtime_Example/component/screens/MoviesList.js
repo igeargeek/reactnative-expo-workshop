@@ -1,11 +1,30 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableHighlight, FlatList, Image } from 'react-native'
 import { NavigationActions } from 'react-navigation';
+import axios from 'axios';
 
 export default class MoviesList extends Component {
     static navigationOptions = {
-        header: null
+        title: 'Movies Showtime Example',
+        headerStyle: {
+            backgroundColor: '#000',
+            borderBottomWidth: 0
+        },
+        
+
     };
+
+    componentDidMount() {
+        axios.get(`https://react-native-workshop-api.igeargeek.com/movie`)
+            .then(res => {
+            const movies = res.data;
+            this.setState({ 
+                movies,
+                loading: false
+             });
+        })
+    }
+
     render() {
         return (
             <View style={styles.container}>
