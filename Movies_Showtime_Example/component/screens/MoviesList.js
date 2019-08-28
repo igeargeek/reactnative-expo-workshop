@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, TouchableHighlight, FlatList, Image, ActivityIndicator } from 'react-native'
-import { NavigationActions } from 'react-navigation';
 import axios from 'axios';
 
 export default class MoviesList extends Component {
@@ -42,15 +41,16 @@ export default class MoviesList extends Component {
                 <FlatList
                     data={this.state.movies}
                     numColumns={2}
+                    keyExtractor={item => item.id}
                     renderItem={({item}) => 
                     <TouchableHighlight
                         style={styles.cardMovie}
                         activeOpacity={1}
                         onPress={() => 
-                            this.props.navigation.dispatch(NavigationActions.navigate({ 
+                            this.props.navigation.navigate({ 
                                 routeName: 'MovieDetail',
-                                params: { id: item.key },
-                            }))
+                                params: { id: item.id },
+                            })
                         }>
                         <View style={styles.movieImage}>
                             <Image source={{uri: item.image}}
