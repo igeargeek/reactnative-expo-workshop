@@ -9,9 +9,6 @@ const MovieNavigator = createStackNavigator({
     MovieDetail: {
         screen: MovieDetail
     },
-},
-{
-    mode: 'modal'
 });
 
 export default createAppContainer(MovieNavigator);

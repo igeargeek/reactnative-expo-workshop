@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
+import { Text, StyleSheet, View, TouchableHighlight } from 'react-native'
 import { NavigationActions } from 'react-navigation';
 
 export default class MoviesList extends Component {
     static navigationOptions = {
-        header: null
-    };
+        title: 'Movies Showtime Example',
+        headerStyle: {
+          backgroundColor: '#000',
+          borderBottom: 0
+        },
+        headerTintColor: '#fff',    };
     render() {
         return (
             <View style={styles.container}>
-                <TouchableOpacity
+                <TouchableHighlight
                     onPress={() => 
-                        this.props.navigation.dispatch(NavigationActions.navigate({ routeName: 'MovieDetail' }))}
+                        this.props.navigation.navigate({ routeName: 'MovieDetail' })}
                     >
-                    <Text style={styles.text}> MoviesList </Text>
-                </TouchableOpacity>
+                    <Text style={styles.text}>Go to MoviesList</Text>
+                </TouchableHighlight>
             </View>
         )
     }
