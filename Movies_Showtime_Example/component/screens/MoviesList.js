@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableHighlight, FlatList, Image } from 'react-native'
+import { Text, StyleSheet, View, TouchableHighlight, FlatList, Image, ActivityIndicator } from 'react-native'
 import { NavigationActions } from 'react-navigation';
 import axios from 'axios';
 
@@ -10,26 +10,37 @@ export default class MoviesList extends Component {
             backgroundColor: '#000',
             borderBottomWidth: 0
         },
-        
-
+        headerTintColor: '#fff'
     };
+
+    state = {
+        movies: [],
+        loading: true
+    }
 
     componentDidMount() {
         axios.get(`https://react-native-workshop-api.igeargeek.com/movie`)
             .then(res => {
-            const movies = res.data;
+                console.log(res.data)
             this.setState({ 
-                movies,
+                movies: res.data,
                 loading: false
              });
         })
     }
 
     render() {
+        if(this.state.loading) {
+            return(
+                <View>
+                    <ActivityIndicator size="large" color="#000" />
+                </View>
+            )
+        }
         return (
             <View style={styles.container}>
                 <FlatList
-                    data={[{key: 'a'}, {key: 'b'}, {key: 'c'}, {key: 'd'}, {key: 'd'}, {key: 'd'}]}
+                    data={this.state.movies}
                     numColumns={2}
                     renderItem={({item}) => 
                     <TouchableHighlight
@@ -42,11 +53,11 @@ export default class MoviesList extends Component {
                             }))
                         }>
                         <View style={styles.movieImage}>
-                            <Image source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
+                            <Image source={{uri: item.image}}
                                 style={styles.movieImage} />
                             <View style={{padding: 20}}>
-                                <Text style={styles.textDate}>22 สิงหาคม 2019</Text>
-                                <Text style={styles.textTitle}>ชื่อหนังแบบตัวอย่าง</Text>
+                                <Text style={styles.textDate}>{item.show_date}</Text>
+                                <Text style={styles.textTitle}>{item.title.th}</Text>
                             </View>
                         </View>
                     </TouchableHighlight>
@@ -61,8 +72,7 @@ export default class MoviesList extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
-        paddingTop: 50
+        backgroundColor: '#000'
     },
     textDate: {
         color: '#e1b12c'
