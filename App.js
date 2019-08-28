@@ -10,13 +10,17 @@ export default class App extends Component {
   }
 
   getDataApi = () => {
-    axios.post('https://dev.berdodee.com/api/Reminder',{tel: this.state.input})
+    axios.get(`https://react-native-workshop-api.igeargeek.com/hola?tel=${this.state.input}`)
     .then((res) => {
-      const { name, data } = res.data.data.totalNumberMeaning.data
+      console.log('res.data.data.totalNumberMeaning.data',res.data.data.totalNumberMeaning.data)
+      const { name='', data='' } = res.data.data.totalNumberMeaning.data
       this.setState({
         name,
         data,
       })
+    })
+    .catch((error) => {
+      console.error(res.data.data.totalNumberMeaning.data)
     })
   }
 
