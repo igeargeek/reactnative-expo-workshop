@@ -4,23 +4,19 @@ import axios from 'axios'
 
 export default class App extends Component {
   state = {
-    input: '',
+    text: '',
     name: '',
     data: '',
   }
 
   getDataApi = () => {
-    axios.get(`https://react-native-workshop-api.igeargeek.com/hola?tel=${this.state.input}`)
+    axios.get(`https://react-native-workshop-api.igeargeek.com/hola?tel=${this.state.text}`)
     .then((res) => {
-      console.log('res.data.data.totalNumberMeaning.data',res.data.data.totalNumberMeaning.data)
       const { name='', data='' } = res.data.data.totalNumberMeaning.data
       this.setState({
         name,
         data,
       })
-    })
-    .catch((error) => {
-      console.error(res.data.data.totalNumberMeaning.data)
     })
   }
 
@@ -28,8 +24,8 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <TextInput
-          value={this.state.input}
-          onChangeText={(text) => { this.setState({ input: text }) }}
+          value={this.state.text}
+          onChangeText={(text) => { this.setState({ text: text }) }}
           style={{ borderWidth: 1, width: 200, marginTop: 20, marginBottom: 20 }}
         />
         <Button
