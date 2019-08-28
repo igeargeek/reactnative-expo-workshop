@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, WebView, Image, ActivityIndicator } from 'react-native'
+import { Text, StyleSheet, View, WebView, Image, ActivityIndicator, ScrollView } from 'react-native'
 import axios from 'axios';
 
 export default class MovieDetail extends Component {
@@ -38,10 +38,9 @@ export default class MovieDetail extends Component {
             )
         }
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1}}>
                 <WebView
                     style={styles.videoLayout}
-                    javaScriptEnabled={true}
                     source={{uri: movieData.video}}
                 />
                 <View style={styles.movieInfoToplayout}>
@@ -54,7 +53,7 @@ export default class MovieDetail extends Component {
                                 <Text style={styles.textMovieDetail}>ประเภท: </Text>
                                 {movieData.categories.map((item, index) => {
                                     return(
-                                        <Text key={index} style={styles.textMovieDetail}>{item}</Text>
+                                        <Text key={index} style={styles.textMovieDetail}>{item} </Text>
                                     )
                                 })}
                             </View>
@@ -83,10 +82,10 @@ export default class MovieDetail extends Component {
                             </View>
                         </View>
                         <Text style={styles.textMovieInfo}>เรื่องย่อ</Text>
-                        <Text numberOfLines={10} ellipsizeMode='tail' style={styles.descriptionMovie}>{movieData.description}</Text>
+                        <Text style={styles.descriptionMovie}>{movieData.description}</Text>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -97,7 +96,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#000'
     },
     videoLayout: {
-        flex:1, 
+        flex:1,
+        height: 200
     },
     movieInfoToplayout: {
         flex: 2, 
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
     descriptionMovie: {
         color: '#fff',
-        fontSize: 14,
+        fontSize: 13,
         lineHeight: 18
     },
     textMovieTitle: {
