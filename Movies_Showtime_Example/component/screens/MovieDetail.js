@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View, WebView, Image, ActivityIndicator, ScrollView } from 'react-native'
+import { Text, StyleSheet, View, Image, ActivityIndicator, ScrollView } from 'react-native'
+import { WebView } from 'react-native-webview';
 import axios from 'axios';
 
 export default class MovieDetail extends Component {
