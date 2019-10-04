@@ -4,42 +4,42 @@ import { NavigationActions } from 'react-navigation';
 import axios from 'axios';
 
 export default class MoviesList extends Component {
-    static navigationOptions = {
-        title: 'Movies Showtime Example',
-        headerStyle: {
-            backgroundColor: '#000',
-            borderBottomWidth: 0
-        },
-        headerTintColor: '#fff'
-    };
+    // static navigationOptions = {
+    //     title: 'Movies Showtime Example',
+    //     headerStyle: {
+    //         backgroundColor: '#000',
+    //         borderBottomWidth: 0
+    //     },
+    //     headerTintColor: '#fff'
+    // };
 
-    state = {
-        movies: [],
-        loading: true
-    }
+    // state = {
+    //     movies: [],
+    //     loading: true
+    // }
 
-    componentDidMount() {
-        axios.get(`https://react-native-workshop-api.igeargeek.com/movie`)
-            .then(res => {
-            const movies = res.data;
-            this.setState({ 
-                movies,
-                loading: false
-             });
-        })
-    }
+    // componentDidMount() {
+    //     axios.get(`https://react-native-workshop-api.igeargeek.com/movie`)
+    //         .then(res => {
+    //         const movies = res.data;
+    //         this.setState({ 
+    //             movies,
+    //             loading: false
+    //          });
+    //     })
+    // }
 
     render() {
-        if (this.state.loading) {
-            return(
-                <View style={styles.loading}>
-                    <ActivityIndicator size="large" color="#000" />
-                </View>
-            )
-        }
+        // if (this.state.loading) {
+        //     return(
+        //         <View style={styles.loading}>
+        //             <ActivityIndicator size="large" color="#000" />
+        //         </View>
+        //     )
+        // }
         return (
             <View style={styles.container}>
-                <FlatList
+                {/* <FlatList
                     data={this.state.movies}
                     numColumns={2}
                     keyExtractor={item => item.id}
@@ -64,7 +64,7 @@ export default class MoviesList extends Component {
                     </TouchableHighlight>
                     }
                 />
-                
+                 */}
             </View>
         )
     }

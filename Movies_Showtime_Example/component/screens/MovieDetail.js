@@ -4,43 +4,43 @@ import { WebView } from 'react-native-webview';
 import axios from 'axios';
 
 export default class MovieDetail extends Component {
-    static navigationOptions = {
-        headerStyle: {
-            backgroundColor: '#000',
-            borderBottomWidth: 0
-        },
-        headerTintColor: '#fff'
-    };
+    // static navigationOptions = {
+    //     headerStyle: {
+    //         backgroundColor: '#000',
+    //         borderBottomWidth: 0
+    //     },
+    //     headerTintColor: '#fff'
+    // };
 
-    state = {
-        movieData: [],
-        loading: true
-    }
+    // state = {
+    //     movieData: [],
+    //     loading: true
+    // }
 
-    componentDidMount() {
-        const itemId = this.props.navigation.getParam('id');
-        axios.get(`https://react-native-workshop-api.igeargeek.com/movie/${itemId}`)
-            .then(res => {
-            const movieData = res.data;
-            this.setState({ 
-                movieData,
-                loading: false
-             });
-        })
-    }
+    // componentDidMount() {
+    //     const itemId = this.props.navigation.getParam('id');
+    //     axios.get(`https://react-native-workshop-api.igeargeek.com/movie/${itemId}`)
+    //         .then(res => {
+    //         const movieData = res.data;
+    //         this.setState({ 
+    //             movieData,
+    //             loading: false
+    //          });
+    //     })
+    // }
     
     render() {
-        const { movieData } = this.state
-        if (this.state.loading) {
-            return(
-                <View style={styles.loading}>
-                    <ActivityIndicator size="large" color="#000" />
-                </View>
-            )
-        }
+        // const { movieData } = this.state
+        // if (this.state.loading) {
+        //     return(
+        //         <View style={styles.loading}>
+        //             <ActivityIndicator size="large" color="#000" />
+        //         </View>
+        //     )
+        // }
         return (
             <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1}}>
-                <WebView
+                {/* <WebView
                     style={styles.videoLayout}
                     source={{uri: movieData.video}}
                 />
@@ -85,7 +85,7 @@ export default class MovieDetail extends Component {
                         <Text style={styles.textMovieInfo}>เรื่องย่อ</Text>
                         <Text style={styles.descriptionMovie}>{movieData.description}</Text>
                     </View>
-                </View>
+                </View> */}
             </ScrollView>
         )
     }
